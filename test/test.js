@@ -80,6 +80,12 @@ describe('formatValue', function()
         assert.equal(pgsubst.format(new Date(1260434555444)),
             'E\'2009-12-10 08:42:35\'::timestamp with time zone');
     });
+
+    it('json', function()
+    {
+        assert.equal(pgsubst.format({ id : 1, names: [ "test1", "test2" ] }),
+            'E\'{"id":1,"names":["test1","test2"]}\'::json');
+    });
 });
         
 describe('substitute', function()
