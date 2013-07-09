@@ -25,6 +25,10 @@
 		"substitute"
 	],
 	"main": "./lib/pgsubst.js",
+	"scripts":
+	{
+		"test": "mocha"
+	},
 	"dependencies":
 	{
 		"moment": "*",
