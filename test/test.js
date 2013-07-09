@@ -46,28 +46,28 @@ describe('formatValue', function()
 
     it('array of integers', function()
     {
-            assert.equal(pgsubst.format([13, 5, 8]) , 'E\'{13,5,8}\'');
+            assert.equal(pgsubst.format([13, 5, 8]) , 'ARRAY[13,5,8]');
     });
 
     it('array of strings', function()
     {
-        assert.equal(pgsubst.format(['a', 'b', 'c', '"']) , 'E\'{"a","b","c","\"\""}\'');
+        assert.equal(pgsubst.format(['a', 'b', 'c', '"', '\'']) ,
+            'ARRAY[E\'a\',E\'b\',E\'c\',E\'"\',E\'\\\'\']');
     });
 
     it('array of strings (escaped) (simple)', function()
     {
         assert.equal(
             pgsubst.format(['\'']) ,
-            'E\'{"\\\\\\\'"');
+            'ARRAY[E\'\\\'\']');
     });
 
     it('array of strings (escaped)', function()
     {
         assert.equal(
-            pgsubst.format(['a', '"\'\"\\b', 'c', '"']) ,
-            'E\'{"a","\\\\\\\'\\\\\\\"\\\\\\\\b","c","\"\""}\'');
+            pgsubst.format(['a', '"\'\\b', 'c', '"']) ,
+            'ARRAY[E\'a\',E\'"\\\'\\\\b\',E\'c\',E\'"\']');
     });
-
 
     it('moment', function()
     {
