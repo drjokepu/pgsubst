@@ -75,7 +75,7 @@ pgsubst.format({ id: 300 })
 ```
 will yield
 ```JavaScript
-"{id:300}::json"
+"E'{id:300}'::json"
 ```
 
 ## Supported Types
