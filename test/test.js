@@ -102,28 +102,106 @@ describe('substitute', function()
     
     it('none (undefined) (with parameters)', function()
     {
-        assert.equal(pgsubst('select * from test where id = :id'), 'select * from test where id = :id');
+        assert.equal(pgsubst(
+            'select * from test where id = :id'),
+            'select * from test where id = :id');
     });
     
     it('none (empty) (with parameters)', function()
     {
-        assert.equal(pgsubst('select * from test where id = :id', {}), 'select * from test where id = :id');
+        assert.equal(pgsubst(
+            'select * from test where id = :id', {}),
+            'select * from test where id = :id');
     });
     
     it('integer (1)', function()
     {
-        assert.equal(pgsubst('select * from test where id = :id', { id: 123 }), 'select * from test where id = 123');
+        assert.equal(pgsubst(
+            'select * from test where id = :id', { id: 123 }),
+            'select * from test where id = 123');
+    });
+
+    it('integer (1, multi)', function()
+    {
+        assert.equal(pgsubst(
+            'select * from test where id = :id or other_id = :id', { id: 123 }),
+            'select * from test where id = 123 or other_id = 123');
     });
     
     it('string (1)', function()
     {
-        assert.equal(pgsubst('select * from test where name = :user_name', { id: 123, user_name: 'Jozef Ilyakovic' }),
-                'select * from test where name = E\'Jozef Ilyakovic\'');
+        assert.equal(pgsubst(
+            'select * from test where name = :user_name', { id: 123, user_name: 'Jozef Ilyakovic' }),
+            'select * from test where name = E\'Jozef Ilyakovic\'');
     });
     
     it('integer (2)', function()
     {
-        assert.equal(pgsubst('select * from test where id = :id and height > :height', { id: 800, height: 140 }),
-                'select * from test where id = 800 and height > 140');
+        assert.equal(pgsubst(
+            'select * from test where id = :id and height > :height', { id: 800, height: 140 }),
+            'select * from test where id = 800 and height > 140');
+    });
+
+    it('integer (in string)', function()
+    {
+        assert.equal(pgsubst(
+            'select * from test where id = \':id\'', { id: 123 }),
+            'select * from test where id = \':id\'');
+    });
+
+    it('integer (in escaped string)', function()
+    {
+        assert.equal(pgsubst(
+            'select * from test where id = E\':id\'', { id: 123 }),
+            'select * from test where id = E\':id\'');
+    });
+
+    it('integer (in escaped string, with escapes)', function()
+    {
+        assert.equal(pgsubst(
+            'select * from test where id = E\'\\\':id\'', { id: 123 }),
+            'select * from test where id = E\'\\\':id\'');
+    });
+
+    it('integer (in identifier)', function()
+    {
+        assert.equal(pgsubst(
+            'select col0, ":id" from test where id = 400', { id: 123 }),
+            'select col0, ":id" from test where id = 400');
+    });
+
+    it('comment only (single line)', function()
+    {
+        assert.equal(pgsubst(
+            '-- comment'),
+            '-- comment');
+    });
+
+    it('comment only (multi line)', function()
+    {
+        assert.equal(pgsubst(
+            '/* comment */'),
+            '/* comment */');
+    });
+
+    it('integer (in comment, single line)', function()
+    {
+        assert.equal(pgsubst(
+            'select id from test where id = 400; -- :id is 400\nselect :id', { id: 123 }),
+            'select id from test where id = 400; -- :id is 400\nselect 123');
+    });
+
+    it('integer (in comment, multi line)', function()
+    {
+        assert.equal(pgsubst(
+            'select id from test where /* :id */ id = :id;', { id: 123 }),
+            'select id from test where /* :id */ id = 123;');
+    });
+
+    it('integer (in comment, multi line, nested)', function()
+    {
+        assert.equal(pgsubst(
+            'select id from test where /* :id /* :id */ :id */ id = :id;', { id: 123 }),
+            'select id from test where /* :id /* :id */ :id */ id = 123;');
     });
 });
