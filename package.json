@@ -1,0 +1,33 @@
+{
+	"name": "pgsubst",
+	"version": "0.0.1",
+	"author": "Tamas Czinege <tomi.czinege@gmail.com>",
+	"description": "Substitutes named parameters with values within PostgreSQL queries",
+	"contributors": [],
+	"homepage": "https://github.com/drjokepu/pgsubst",
+	"bugs": "https://github.com/drjokepu/pgsubst/issues",
+	"license": "MIT",
+	"repository":
+	{
+		"type": "git",
+		"url": "git://github.com/drjokepu/pgsubst.git"
+	},
+	"keywords":
+	[
+		"escape",
+		"named",
+		"parameter",
+		"pg",
+		"postgres",
+		"postgresql",
+		"replace",
+		"sql",
+		"substitute"
+	],
+	"main": "./lib/pgsubst.js",
+	"dependencies":
+	{
+		"moment": "*",
+		"underscore": "*"
+	}
+}
