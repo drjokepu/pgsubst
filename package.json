@@ -29,5 +29,9 @@
 	{
 		"moment": "*",
 		"underscore": "*"
+	},
+	"devDepenendencies":
+	{
+		"mocha": "*"
 	}
 }
