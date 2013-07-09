@@ -34,7 +34,7 @@
 		"moment": "*",
 		"underscore": "*"
 	},
-	"devDepenendencies":
+	"devDependencies":
 	{
 		"mocha": "*"
 	}
