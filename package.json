@@ -31,11 +31,11 @@
 	},
 	"dependencies":
 	{
-		"moment": ">=2.2.1",
-		"underscore": "*"
+		"moment": "~2.29.4",
+		"underscore": "~1.13.4"
 	},
 	"devDependencies":
 	{
-		"mocha": "*"
+		"mocha": "~10.0.0"
 	}
 }
