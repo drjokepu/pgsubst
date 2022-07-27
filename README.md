@@ -1,4 +1,4 @@
-# pgsubst [![Build Status](https://travis-ci.org/drjokepu/pgsubst.png?branch=master)](https://travis-ci.org/drjokepu/pgsubst) [![NPM version](https://badge.fury.io/js/pgsubst.png)](http://badge.fury.io/js/pgsubst)
+# pgsubst [![Build Status](https://app.travis-ci.com/drjokepu/pgsubst.svg?branch=master)](https://travis-ci.org/drjokepu/pgsubst) [![NPM version](https://badge.fury.io/js/pgsubst.png)](http://badge.fury.io/js/pgsubst)
 `pgsubst` substitutes named parameters with values within PostgreSQL queries.
 
 ## Usage
