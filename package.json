@@ -1,6 +1,6 @@
 {
 	"name": "pgsubst",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"author": "Tamas Czinege <tomi.czinege@gmail.com>",
 	"description": "Substitutes named parameters with values within PostgreSQL queries",
 	"contributors": [],
